@@ -11,25 +11,11 @@ $tipo_mensagem = '';
 $email = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    //conexao com banco de dados --inicio
-    $host = 'localhost';
-    $db = 'oficina_app';
-    $user = 'root';
-    $senha_bd = 'root';
-
-    try {
-        $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $senha_bd);
-        $pdo->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER);
-    } catch (PDOException $e) {
-        die("Erro na conexão: " . $e->getMessage());
-    }
-    //conexao com banco de dados --final
+    require __DIR__ . '/../config/database.php';
 
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
     $check_password = $_POST['check_password'] ?? '';
-
-
 
     if (empty($email) && empty($password) && empty($check_password)) {
         $tipo_mensagem = "erro";
@@ -47,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $tipo_mensagem = "erro";
         $mensagem = "As senhas não coincidem!";
     } else {
-        //cadastrar no banco de dados
         $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email");
         $stmt->execute(['email' => $email]);
         $usuario_existente = $stmt->fetch();
@@ -77,42 +62,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/style.css">
+<title>Document</title>
 </head>
 
 <body>
-    <div class="page">
-        <form class="form" action="cadastro.php" method="POST">
-            <h1>Sign In</h1>
+<div class="page">
+<form class="form" action="cadastro.php" method="POST">
+<h1>Sign In</h1>
 
-            <?php if (!empty($mensagem)): ?>
-                <p class="mensagem mensagem-<?= $tipo_mensagem ?>"><?= $mensagem ?></p>
-            <?php endif; ?>
+<?php if (!empty($mensagem)): ?>
+<p class="mensagem mensagem-<?= $tipo_mensagem ?>"><?= $mensagem ?></p>
+<?php endif; ?>
 
-            <label for="email">E-mail</label>
-            <input type="email" name="email" placeholder="exemplo123@email.com" value="<?= htmlspecialchars($email) ?>">
-            <label for="password">Senha</label>
-            <input type="password" name="password" placeholder="********">
-            <label for="password">Confirmar Senha</label>
-            <input type="password" name="check_password" placeholder="********">
+<label for="email">E-mail</label>
+<input type="email" name="email" placeholder="exemplo123@email.com" value="<?= htmlspecialchars($email) ?>">
+<label for="password">Senha</label>
+<input type="password" name="password" placeholder="********">
+<label for="password">Confirmar Senha</label>
+<input type="password" name="check_password" placeholder="********">
 
-            <?php
-            if ($_SESSION['usuario_cargo'] === 'dono') :
-            ?>
-                <label for="cargo">Cargo</label>
-                <select name="cargo">
-                    <option value="funcionario">Funcionario</option>
-                    <option value="gerente">Gerente</option>
-                </select>
-            <?php endif; ?>
+<?php
+if ($_SESSION['usuario_cargo'] === 'dono') :
+?>
+<label for="cargo">Cargo</label>
+<select name="cargo">
+<option value="funcionario">Funcionario</option>
+<option value="gerente">Gerente</option>
+</select>
+<?php endif; ?>
 
-            <a href="login.php">Já tenho uma conta</a>
-            <button type="submit">Entrar</button>
-        </form>
-    </div>
+<a href="login.php">Já tenho uma conta</a>
+<button type="submit">Entrar</button>
+</form>
+</div>
 </body>
 
 </html>
