@@ -53,7 +53,7 @@
 
 - `scripts/` — [scripts auxiliares de desenvolvimento (não fazem parte do fluxo em produção)]
 
-- `banco.sql` — s[cript de criação e populamento inicial do banco de dados, executado automaticamente na primeira subida do container do MariaDB]
+- `banco.sql` — [script de criação e populamento inicial do banco de dados, executado automaticamente na primeira subida do container do MariaDB]
 
 - `docker-compose.yml` — [define e orquestra os serviços `app` (PHP/Apache) e `db` (MariaDB)]
 
