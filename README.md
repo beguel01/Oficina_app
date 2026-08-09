@@ -33,7 +33,7 @@
 
 > Essas credenciais existem apenas para fins de desenvolvimento/teste local. Nunca utilize dados sensíveis reais neste banco.
 
-- **E-mail:** [joao@gmail.com]
+- **E-mail:** [funcionario@teste.com]
 - **Senha:** [senha123]
 - **Cargo:** [funcionario]
 
