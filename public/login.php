@@ -36,9 +36,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['usuario_cargo'] = $usuario['cargo'];
 
                 $destino = match ($usuario['cargo']) {
-                    'funcionario' => 'dashboard_funcionario.php',
-                    'gerente' => 'dashboard_gerente.php',
-                    'dono' => 'dashboard_dono.php',
+                    'funcionario' => '/dashboard/funcionario',
+                    'gerente' => '/dashboard/gerente',
+                    'dono' => '/dashboard/dono',
                 };
 
                 header("Location: $destino");
@@ -57,12 +57,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
 <meta charset="UTF-8">
 <title>Login</title>
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
 <div class="page">
-<form class="form" action="login.php" method="POST">
+<form class="form" action="/login" method="POST">
 <h1>Login</h1>
 
 <?php if (!empty($mensagem)): ?>
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <span class="checkbox-box"></span>
 <span class="checkbox-text">Lembrar de mim</span>
 </label>
-<a href="cadastro.php">Criar Conta</a>
+<a href="/cadastro">Criar Conta</a>
 <button type="submit">Entrar</button>
 </form>
 </div>

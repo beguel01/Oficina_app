@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['usuario_id']) || !in_array($_SESSION['usuario_cargo'], ['dono', 'gerente'])) {
-    header("Location: login.php");
+    header("Location: /login");
     exit;
 }
 
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $stmt = $pdo->prepare("INSERT INTO usuarios (email, senha, cargo) VALUES (:email, :senha, :cargo)");
             $stmt->execute(['email' => $email, 'senha' => $password_hash, 'cargo' => $cargo_novo_usuario]);
-            header("Location: login.php");
+            header("Location: /login");
             exit;
         }
     }
@@ -64,13 +64,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 <title>Document</title>
 </head>
 
 <body>
 <div class="page">
-<form class="form" action="cadastro.php" method="POST">
+<form class="form" action="/cadastro" method="POST">
 <h1>Sign In</h1>
 
 <?php if (!empty($mensagem)): ?>
@@ -94,7 +94,7 @@ if ($_SESSION['usuario_cargo'] === 'dono') :
 </select>
 <?php endif; ?>
 
-<a href="login.php">Já tenho uma conta</a>
+<a href="/login">Já tenho uma conta</a>
 <button type="submit">Entrar</button>
 </form>
 </div>

@@ -2,13 +2,13 @@
 session_start();
 if (!isset($_SESSION['usuario_id']))
     {
-header("Location: login.php"); 
-exit;
+    header("Location: /login"); 
+    exit;
     }
 elseif ($_SESSION['usuario_cargo'] !== 'gerente')
     {
-header("Location: login.php");
-exit;
+    header("Location: /login");
+    exit;
     }
 ?>
 
@@ -17,13 +17,13 @@ exit;
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/style.css">  
+<link rel="stylesheet" href="/css/style.css">  
 <title>Document</title>
 </head>
 <body>
 <div class="page">
 <h1>Seja Bem-vindo! Gerente</h1>
-<a href="logout.php">Sair</a>
+<a href="/logout">Sair</a>
 </div>
 </body>
 </html>
