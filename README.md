@@ -7,7 +7,7 @@
 
 1. Clone o repositório:
 ```bash
-    git clone https//github.com/beguel01/Oficina.app.git
+    git clone https//github.com/beguel01/Oficina_app.git
     cd Oficina_app
 ```
 
