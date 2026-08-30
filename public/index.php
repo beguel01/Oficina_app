@@ -4,6 +4,7 @@ $uri = $_SERVER['REQUEST_URI'];
 $path = parse_url($uri, PHP_URL_PATH);
 
 $rotas = [
+    '/' => 'login.php',
     '/login' => 'login.php',
     '/cadastro' => 'cadastro.php',
     '/logout' => 'logout.php',

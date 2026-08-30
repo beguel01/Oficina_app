@@ -89,7 +89,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <span class="checkbox-box"></span>
                 <span class="checkbox-text">Lembrar de mim</span>
             </label>
-            <a href="/cadastro">Criar Conta</a>
             <button type="submit">Entrar</button>
         </form>
     </div>
